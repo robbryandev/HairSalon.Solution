@@ -1,22 +1,59 @@
-# _{Application Name}_
+# Eau Claire's Salon
 
 ## Contributers
 * Robert Bryan
 
 ## Description
-
+A basic web app to let salon owners add stylists and clients
 
 ## Technologies Used
+* c#
+* .Net6
+* Entity Framework Core
+* MySql
 * HTML
 * CSS
-* Javascript
 * Bootstrap
 
 ## Setup/Installation Requirements
 
+### Requirements
+* .Net6
+* MySql Server
+* MySql WorkBench
+
+### Setup
+* Open a terminal inside of "HairSalon"
+* Restore packages
+```
+dotnet restore
+```
+* import database dump using MySql WorkBench
+```
+Go to Server>Data Import
+Select Import from self-contained file
+Select the robert_bryan.sql file in the dropdown
+Click start import
+```
+* Create a file named "appsettings.json" inside of "HairSalon" following this schema
+```json
+{
+  "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=robert_bryan;uid=[your mysql username];pwd=[your mysql password];"
+  }
+}
+```
+
+## Run
+
+* Open a terminal inside of "HairSalon"
+* Run server
+```
+dotnet run
+```
 
 ## Known Bugs
-
+* None
 
 ## License
 
