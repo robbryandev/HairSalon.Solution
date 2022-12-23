@@ -22,6 +22,9 @@
 <ul class="list-group">
 @foreach (Client client in ViewBag.clients)
 {
-  <li class="list-group-item">@client.name</li>
+  <li class="list-group-item">
+    <p>@client.name</p>
+    <a href="/client/delete/@client.client_id">Delete</a>
+  </li>
 }
 </ul>
