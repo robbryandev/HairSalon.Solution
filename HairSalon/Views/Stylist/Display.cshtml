@@ -2,11 +2,10 @@
   Layout = "_Layout";
 }
 
-
-<a href="/stylists">View all stylists</a>
-
 @using HairSalon.Models
 
+<a class="btn btn-light" href="/stylists">View all stylists</a>
+<a class="btn btn-primary" href="/client/@Model.stylist_id/create">Add new Client</a>
 <h1>
   Stylist: @Model.name
 </h1>
@@ -15,9 +14,10 @@
   Clients:
 </h2>
 
-<a href="/client/@Model.stylist_id/create">Add new Client</a>
 
+<ul class="list-group">
 @foreach (Client client in ViewBag.clients)
 {
-  <h3>@client.name</h3>
+  <li class="list-group-item">@client.name</li>
 }
+</ul>
