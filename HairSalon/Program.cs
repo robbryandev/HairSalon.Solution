@@ -1,26 +1,41 @@
-﻿namespace HairSalon {
-    class Program
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using HairSalon.Models;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace HairSalon
 {
+  class Program
+  {
     static void Main(string[] args)
     {
-        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+      WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddControllersWithViews();
+      builder.Services.AddControllersWithViews();
 
-        WebApplication app = builder.Build();
+      builder.Services.AddDbContext<HairSalonContext>(
+        dbContextOptions => dbContextOptions
+        .UseMySql(
+            builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"])
+        )
+    );
 
-        app.UseDeveloperExceptionPage();
+      WebApplication app = builder.Build();
 
-        app.UseHttpsRedirection();
+      app.UseDeveloperExceptionPage();
 
-        app.UseRouting();
+      app.UseStaticFiles();
 
-        app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}"
-        );
+      app.UseHttpsRedirection();
 
-        app.Run();
+      app.UseRouting();
+
+      app.MapControllerRoute(
+              name: "default",
+              pattern: "{controller=Home}/{action=Index}/{id?}"
+      );
+
+      app.Run();
     }
-}
+  }
 }
