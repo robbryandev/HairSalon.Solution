@@ -2,14 +2,19 @@
   Layout = "_Layout";
 }
 
-
 <a href="/">Home</a>
 <a href="/stylists/create">Add a new stylist</a>
 <h1>stylists:</h1>
 
 @using HairSalon.Models
 
+<ul>
 @foreach (Stylist stylist in ViewBag.stylists)
 {
-  <h3>@stylist.name</h3>
+  <li>
+    <a href="/stylists/@stylist.stylist_id">
+      @stylist.name
+    </a>
+  </li>
 }
+</ul>

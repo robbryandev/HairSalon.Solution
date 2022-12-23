@@ -1,0 +1,11 @@
+@{
+  Layout = "_Layout";
+}
+
+<a href="/">Home</a>
+
+<form action="/client/@ViewBag.stylist.stylist_id/create" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" id="name">
+  <button class="btn btn-primary" type="submit">Add Client to @ViewBag.stylist.name</button>
+</form>

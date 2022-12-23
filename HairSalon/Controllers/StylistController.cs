@@ -24,6 +24,23 @@ namespace HairSalon.Controllers
       return View();
     }
 
+    [HttpGet("/stylists/{id}")]
+    public ActionResult Display(int id)
+    {
+      Stylist thisStylist = _db.stylist.FirstOrDefault(stylist => stylist.stylist_id == id);
+      List<Client> clients = _db.client.ToList();
+      List<Client> filtered = new List<Client>{};
+      foreach (Client client in clients)
+      {
+        if (client.stylist_id == id)
+        {
+          filtered.Add(client);
+        }
+      }
+      ViewBag.clients = filtered;
+      return View(thisStylist);
+    }
+
     [HttpGet("/stylists/create")]
     public ActionResult Create()
     {

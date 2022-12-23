@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+
+<a href="/stylists">View all stylists</a>
+
+@using HairSalon.Models
+
+<h1>
+  Stylist: @Model.name
+</h1>
+
+<h2>
+  Clients:
+</h2>
+
+<a href="/client/@Model.stylist_id/create">Add new Client</a>
+
+@foreach (Client client in ViewBag.clients)
+{
+  <h3>@client.name</h3>
+}
