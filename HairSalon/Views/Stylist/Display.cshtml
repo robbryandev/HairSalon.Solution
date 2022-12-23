@@ -10,9 +10,13 @@
   Stylist: @Model.name
 </h1>
 
-<h2>
-  Clients:
-</h2>
+
+@if (ViewBag.clients.Count > 0)
+{
+  <h2>Clients:</h2>
+} else {
+  <h2>@Model.name has no clients yet</h2>
+}
 
 
 <ul class="list-group">

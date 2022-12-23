@@ -4,7 +4,12 @@
 
 <a class="btn btn-light" href="/">Home</a>
 <a class="btn btn-primary" href="/stylists/create">Add a new stylist</a>
-<h1>stylists:</h1>
+@if (ViewBag.stylists.Count > 0)
+{
+  <h1>stylists:</h1>
+} else {
+  <h1>There are no stylists yet</h1>
+}
 
 @using HairSalon.Models
 
