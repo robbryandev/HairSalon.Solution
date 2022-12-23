@@ -3,7 +3,7 @@
 }
 
 <h1> Are you sure you want to delete <span class="red">@Model.name</span>?</h1>
-<form action="/client/delete/@Model.client_id" method="post">
+<form action="/stylists/delete/@Model.stylist_id" method="post">
   <button class="btn btn-danger" type="submit">Delete @Model.name</button>
-  <a class="btn btn-warning" href="/stylists/@Model.stylist_id">Cancel</a>
+  <a class="btn btn-warning" href="/stylists">Cancel</a>
 </form>
