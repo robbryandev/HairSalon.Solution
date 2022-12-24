@@ -25,5 +25,22 @@ namespace HairSalon.Controllers
       _db.SaveChanges();
       return Redirect($"/stylists/{id}");
     }
+
+    [HttpGet("/appointment/delete/{id}")]
+    public ActionResult Delete(int id)
+    {
+      Appointment thisAppointment = _db.appointment.FirstOrDefault(appointment => appointment.appointment_id == id);
+      ViewBag.client = _db.client.FirstOrDefault(client => client.client_id == thisAppointment.client_id);
+      return View(thisAppointment);
+    }
+
+    [HttpPost("/appointment/delete/{id}")]
+    public ActionResult DeleteConfirm(int id)
+    {
+      Appointment thisAppointment = _db.appointment.FirstOrDefault(appointment => appointment.appointment_id == id);
+      _db.appointment.Remove(thisAppointment);
+      _db.SaveChanges();
+      return Redirect($"/stylists/{thisAppointment.stylist_id}");
+    }
   }
 }

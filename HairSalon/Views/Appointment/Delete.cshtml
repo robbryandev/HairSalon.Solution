@@ -1,0 +1,9 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1> Are you sure you want to delete <span class="red">@ViewBag.client.name</span>'s Appointment?</h1>
+<form action="/appointment/delete/@Model.appointment_id" method="post">
+  <button class="btn btn-danger" type="submit">Delete</button>
+  <a class="btn btn-warning" href="/stylists/@Model.stylist_id">Cancel</a>
+</form>

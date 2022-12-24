@@ -43,6 +43,14 @@ namespace HairSalon.Controllers
     public ActionResult DeleteConfirm(int id)
     {
       Client thisClient = _db.client.FirstOrDefault(client => client.client_id == id);
+      List<Appointment> thisAppointments = _db.appointment.ToList();
+      foreach (Appointment appointment in thisAppointments)
+      {
+        if (appointment.client_id == id)
+        {
+          _db.appointment.Remove(appointment);
+        }
+      }
       _db.client.Remove(thisClient);
       _db.SaveChanges();
       return Redirect($"/stylists/{thisClient.stylist_id}");
