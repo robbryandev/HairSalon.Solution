@@ -29,15 +29,25 @@ namespace HairSalon.Controllers
     {
       Stylist thisStylist = _db.stylist.FirstOrDefault(stylist => stylist.stylist_id == id);
       List<Client> clients = _db.client.ToList();
-      List<Client> filtered = new List<Client>{};
+      List<Appointment> appointments = _db.appointment.ToList();
+      List<Client> filteredClients = new List<Client>{};
+      List<Appointment> filteredAppointments = new List<Appointment>{};
       foreach (Client client in clients)
       {
         if (client.stylist_id == id)
         {
-          filtered.Add(client);
+          filteredClients.Add(client);
         }
       }
-      ViewBag.clients = filtered;
+      foreach (Appointment appointment in appointments)
+      {
+        if (appointment.stylist_id == id)
+        {
+          filteredAppointments.Add(appointment);
+        }
+      }
+      ViewBag.clients = filteredClients;
+      ViewBag.appointments = filteredAppointments;
       return View(thisStylist);
     }
 
